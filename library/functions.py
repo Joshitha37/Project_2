@@ -3,10 +3,10 @@ def calc_balance(income, expenses):
     balance = income - expenses
     return balance
 
-def financial_status(balance):
-    if balance > 0:
-        print("Great! You are saving money!")
-    elif balance == 0:
-        print("You are breaking even")
+def financial_status(bal):
+    if bal > 0:
+        return "You are doing good!"
+    elif bal == 0:
+        return "You broke even!"
     else:
-        print("WARNING You are overspending!")
+        return "Warning: You are overspending!"
