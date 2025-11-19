@@ -172,3 +172,5 @@ class BudgetBuddyGUI:
 root = tk.Tk()
 app = BudgetBuddyGUI(root)
 root.mainloop()
+
+
