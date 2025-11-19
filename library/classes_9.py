@@ -38,10 +38,35 @@ class Budget:
                 file.write(f"{item}: ${cost}\n")
             file.write("\n")  
 
+
     def read_from_file(self):
         try:
             with open("budget_data.txt", "r") as file:
                 print(file.read())
         except FileNotFoundError:
             print("No saved data found yet.")
+
+
+    def read_from_file(self):
+        try:
+            with open("budget_data.txt", "r") as file:
+                lines = file.readlines()
+
+            print("\nRetrieved Data for", self.expense_type,)
+            found = False
+
+            for line in lines:
+                if line.startswith(f"Category: {self.expense_type}"):
+                    found = True
+                    print(line.strip())
+                elif found:
+                    if line.strip() == "":  
+                        break
+                    print(line.strip())
+
+            if not found:
+                print("No stored data found for this category.\n")
+
+        except FileNotFoundError:
+            print("budget_data.txt does not exist yet.")
 
