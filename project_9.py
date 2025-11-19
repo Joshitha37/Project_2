@@ -20,7 +20,7 @@ class BudgetBuddyGUI:
         self.categories = []     
 
         
-        tk.Label(root, text="Budget Buddy", font=("Monaco", 45, "bold"), bg=bg_color).pack(pady=50)
+        tk.Label(root, text="Budget Buddy", font=("Monaco", 45, "bold"), bg=bg_color).pack(pady=20)
 
        
         tk.Label(root, text="Your Name:", bg=bg_color).pack()
@@ -51,6 +51,21 @@ class BudgetBuddyGUI:
 
         
         tk.Button(root, text="Show Final Summary", width=15, height=2, command=self.show_summary).pack(pady=15)
+        tk.Button(root, text="Retrieve Saved Data", width=18, height=2,
+          command=self.retrieve_data).pack(pady=10)
+
+    def retrieve_data(self):
+        selected = self.category_box.curselection()
+        if not selected:
+            messagebox.showerror("Error", "Please select a category to retrieve its data.")
+            return
+
+        index = selected[0]
+        category_obj = self.categories[index]
+
+        category_obj.read_from_file() 
+
+        messagebox.showinfo("Retrieved Data")
 
     
     def add_category(self):
