@@ -31,17 +31,3 @@ class Budget:
         print(f"Total money spent on {self.expense_type} is {sum(self.expenses)}.")
         return sum(self.expenses)
     
-    def write_to_file(self):
-        with open("budget_data.txt", "a") as file:
-            file.write(f"Category: {self.expense_type}\n")
-            for item, cost in zip(self.categories, self.expenses):
-                file.write(f"{item}: ${cost}\n")
-            file.write("\n")  # space for readability
-
-
-    def read_from_file(self):
-        try:
-            with open("budget_data.txt", "r") as file:
-                print(file.read())
-        except FileNotFoundError:
-            print("No saved data found yet.")
