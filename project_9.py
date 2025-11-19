@@ -16,7 +16,6 @@ class BudgetBuddyGUI:
         self.root.config(bg="#E2FFD9")
 
         bg_color = "#E2FFD9"
-        self.root.config(bg=bg_color)
 
         self.categories = []     
 
@@ -48,7 +47,7 @@ class BudgetBuddyGUI:
 
         
         tk.Button(root, text="Enter Expenses for Selected Category", width=25, height=2,
-                  command=self.open_expense_window).pack(pady=10)
+                  command=self.expense_window).pack(pady=10)
 
         
         tk.Button(root, text="Show Final Summary", width=15, height=2, command=self.show_summary).pack(pady=15)
@@ -68,7 +67,7 @@ class BudgetBuddyGUI:
         self.cat_name_entry.delete(0, tk.END)
 
    
-    def open_expense_window(self):
+    def expense_window(self):
         selected = self.category_box.curselection()
         if not selected:
             messagebox.showerror("Error", "Please select a category first.")
@@ -110,6 +109,7 @@ class BudgetBuddyGUI:
         summary_text = ""
 
         for cat in self.categories:
+            cat.write_to_file()
             total = cat.get_expenses()
             total_expenses.append(total)
             labels.append(cat.expense_type)
@@ -131,7 +131,6 @@ class BudgetBuddyGUI:
 
         
         self.show_pie_chart(labels, total_expenses)
-    
 
     
     def show_pie_chart(self, labels, values):
