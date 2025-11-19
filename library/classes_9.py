@@ -36,8 +36,7 @@ class Budget:
             file.write(f"Category: {self.expense_type}\n")
             for item, cost in zip(self.categories, self.expenses):
                 file.write(f"{item}: ${cost}\n")
-            file.write("\n")  # space for readability
-
+            file.write("\n")  
 
     def read_from_file(self):
         try:
