@@ -31,3 +31,30 @@ class Budget:
         print(f"Total money spent on {self.expense_type} is {sum(self.expenses)}.")
         return sum(self.expenses)
 
+    def save_expenses_to_file(self):
+        file = open("expenses.txt", "w")   # open file for writing
+
+        for cat in self.categories:
+            file.write(cat.expense_type + "\n")
+
+            for i in range(len(cat.categories)):
+                item = cat.categories[i]
+                cost = cat.expenses[i]
+                file.write(item + " " + str(cost) + "\n")
+
+            file.write("\n")
+
+        file.close() 
+        messagebox.showinfo("Saved", "Expenses have been saved to expenses.txt.")
+    
+    def load_expenses_from_file(self):
+        try:
+            file = open("expenses.txt", "r")  
+            data = file.read()                
+            file.close()
+
+            messagebox.showinfo("Saved Expenses", data)
+
+        except:
+            messagebox.showerror("Error", "No saved file found.")
+
