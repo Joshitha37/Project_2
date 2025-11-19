@@ -69,4 +69,3 @@ class Budget:
 
         except FileNotFoundError:
             print("budget_data.txt does not exist yet.")
-
