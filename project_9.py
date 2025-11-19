@@ -132,6 +132,34 @@ class BudgetBuddyGUI:
         
         self.show_pie_chart(labels, total_expenses)
 
+    def save_expenses_to_file(self):
+        file = open("expenses.txt", "w")
+
+        for cat in self.categories:
+            file.write(cat.expense_type + "\n")
+
+            for i in range(len(cat.categories)):
+                item = cat.categories[i]
+                cost = cat.expenses[i]
+                file.write(item + " " + str(cost) + "\n")
+
+            file.write("\n")
+
+        file.close() 
+        messagebox.showinfo("Saved", "Expenses have been saved to expenses.txt.")
+
+    def load_expenses_from_file(self):
+        try:
+            file = open("expenses.txt", "r")
+            data = file.read()  
+            file.close()
+
+            messagebox.showinfo("Saved Expenses", data)
+
+        except:
+            messagebox.showerror("Error", "No saved file found.")
+    
+
     
     def show_pie_chart(self, labels, values):
         if sum(values) == 0:
